@@ -4,258 +4,597 @@
     <meta charset="UTF-8">
     <title>Sharanu R Kabane | Software Developer & Data Analyst</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- ================= CSS ================= -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
             --dark: #111827;
-            --light: #f9fafb;
+            --light: #f8fafc;
             --gray: #6b7280;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.2);
+            --transition: all 0.3s ease-in-out;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Segoe UI", Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
             background: var(--light);
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
+        /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--primary), #1e40af);
+            background: var(--gradient);
             color: white;
-            padding: 3rem 1.5rem;
+            padding: 4rem 1.5rem 6rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow);
+            background: white;
+            overflow: hidden;
+            transition: var(--transition);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         header p {
+            font-size: 1.2rem;
             margin-top: 0.5rem;
-            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
+        /* Navigation */
         nav {
             background: white;
-            padding: 0.8rem;
+            padding: 1rem;
             display: flex;
             justify-content: center;
-            gap: 1.2rem;
+            gap: 1.5rem;
             position: sticky;
             top: 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-            z-index: 10;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
         }
 
         nav a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
         }
 
         nav a:hover {
             color: var(--primary);
         }
 
+        nav a:hover::before {
+            width: 60%;
+        }
+
+        /* Section Styles */
         section {
-            max-width: 1000px;
-            margin: auto;
-            padding: 3rem 1.5rem;
+            max-width: 1100px;
+            margin: -50px auto 0;
+            padding: 2rem;
+            position: relative;
         }
 
         h2 {
-            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
             color: var(--primary);
-            border-bottom: 2px solid #e5e7eb;
+            position: relative;
             display: inline-block;
-            padding-bottom: 0.3rem;
+            padding-bottom: 0.5rem;
         }
 
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Card Styles */
         .card {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background: var(--card-bg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
         }
 
-        ul {
-            margin-left: 1.2rem;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px -15px rgba(2, 12, 27, 0.3);
+        }
+
+        /* Skills Section */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .skills span {
             display: inline-block;
-            background: #e5edff;
+            background: rgba(79, 70, 229, 0.1);
             color: var(--primary);
-            padding: 0.4rem 0.7rem;
-            border-radius: 5px;
-            margin: 0.3rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
             font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid rgba(79, 70, 229, 0.2);
         }
 
+        .skills span:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Project Cards */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .project-card ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        #contact .card {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-links a {
+            color: var(--dark);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .contact-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
         footer {
-            background: #020617;
+            background: var(--dark);
             color: #d1d5db;
             text-align: center;
-            padding: 1.5rem;
-            font-size: 0.9rem;
+            padding: 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
         }
 
         footer a {
-            color: #93c5fd;
+            color: var(--primary-light);
             text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 1rem 5rem;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* 3D Effects */
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4338ca;
+        }
+
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
         }
     </style>
 </head>
 
 <body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles-js"></div>
 
-<!-- ================= HEADER ================= -->
-<header>
-    <h1>Sharanu R Kabane</h1>
-    <p>Software Developer | Data Analyst | Python Enthusiast</p>
-    <p>Hassan, India • <a style="color:#bfdbfe" href="mailto:sharanukabane01@gmail.com">sharanukabane01@gmail.com</a></p>
-</header>
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <div class="profile-image floating">
+                <img src="data:image/jpeg;base64,[YOUR_IMAGE_BASE64_HERE]" alt="Sharanu R Kabane">
+            </div>
+            <h1>Sharanu R Kabane</h1>
+            <p>Software Developer | Data Analyst | Python Enthusiast</p>
+            <p>Hassan, India • <a style="color:#bfdbfe; text-decoration: none;" href="mailto:sharanukabane01@gmail.com">sharanukabane01@gmail.com</a></p>
+        </div>
+    </header>
 
-<!-- ================= NAV ================= -->
-<nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <!-- Navigation -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-<!-- ================= ABOUT ================= -->
-<section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-        <p>
-            I am an enthusiastic and quick-learning engineering graduate with strong interests in
-            <b>software development, data analytics, and data science</b>.
-            I enjoy building scalable applications, analyzing data for insights, and integrating
-            AI into real-world systems. I value continuous learning, teamwork, and delivering
-            high-quality technical solutions.
-        </p>
-    </div>
-</section>
+    <!-- About Section -->
+    <section id="about" class="card-3d">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>
+                I am an enthusiastic and quick-learning engineering graduate with strong interests in
+                <b>software development, data analytics, and data science</b>.
+                I enjoy building scalable applications, analyzing data for insights, and integrating
+                AI into real-world systems. I value continuous learning, teamwork, and delivering
+                high-quality technical solutions.
+            </p>
+        </div>
+    </section>
 
-<!-- ================= SKILLS ================= -->
-<section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="card skills">
-        <b>Languages:</b><br>
-        <span>Python</span><span>Java</span><span>C</span><span>JavaScript</span><span>HTML</span><span>CSS</span><br><br>
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="card card-3d">
+            <div class="skills">
+                <span>Python</span>
+                <span>Java</span>
+                <span>JavaScript</span>
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>React.js</span>
+                <span>Node.js</span>
+                <span>Flask</span>
+                <span>SQL</span>
+                <span>MongoDB</span>
+                <span>Git</span>
+                <span>Docker</span>
+                <span>Linux</span>
+                <span>Data Analysis</span>
+                <span>Machine Learning</span>
+                <span>AI Integration</span>
+            </div>
+        </div>
+    </section>
 
-        <b>Frameworks:</b><br>
-        <span>React.js</span><span>Flask</span><span>Node.js</span><br><br>
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
 
-        <b>Tools:</b><br>
-        <span>Git</span><span>Linux</span><span>VS Code</span><span>Docker</span><br><br>
+        <div class="card project-card card-3d">
+            <h3>Alemaari Browser – Privacy-Focused Lightweight Browser</h3>
+            <ul>
+                <li>Built a fast, privacy-oriented browser with no history, cookies, or telemetry.</li>
+                <li>Implemented anti-fingerprinting techniques.</li>
+                <li>Integrated AI assistant for intelligent search and interaction.</li>
+                <li>Technologies: Node.js, JavaScript, Chromium Embedded Framework.</li>
+            </ul>
+        </div>
 
-        <b>Interests:</b><br>
-        <span>Data Analysis</span><span>Machine Learning</span>
-        <span>Full-Stack Development</span><span>AI Integration</span>
-    </div>
-</section>
+        <div class="card project-card card-3d">
+            <h3>AI-Powered Hospital Management System</h3>
+            <ul>
+                <li>Developed a full-stack system using Flask and React.</li>
+                <li>Implemented Google Sign-In and AI chatbot.</li>
+                <li>Paperless patient and doctor record management with multilingual support.</li>
+            </ul>
+        </div>
 
-<!-- ================= PROJECTS ================= -->
-<section id="projects">
-    <h2>Projects</h2>
+        <div class="card project-card card-3d">
+            <h3>Smart Online Board</h3>
+            <ul>
+                <li>AI-based educational board for solving academic problems.</li>
+                <li>Supports diagrams and high-level problem analysis.</li>
+                <li>Integrated authentication and intelligent assistance.</li>
+            </ul>
+        </div>
+    </section>
 
-    <div class="card">
-        <h3>Alemaari Browser – Privacy-Focused Lightweight Browser</h3>
-        <ul>
-            <li>Built a fast, privacy-oriented browser with no history, cookies, or telemetry.</li>
-            <li>Implemented anti-fingerprinting techniques.</li>
-            <li>Integrated AI assistant for intelligent search and interaction.</li>
-            <li>Technologies: Node.js, JavaScript, Chromium Embedded Framework.</li>
-        </ul>
-    </div>
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience & Training</h2>
 
-    <div class="card">
-        <h3>AI-Powered Hospital Management System</h3>
-        <ul>
-            <li>Developed a full-stack system using Flask and React.</li>
-            <li>Implemented Google Sign-In and AI chatbot.</li>
-            <li>Paperless patient and doctor record management with multilingual support.</li>
-        </ul>
-    </div>
+        <div class="card card-3d">
+            <h3>Deloitte – Data Analytics Job Simulation (2025)</h3>
+            <ul>
+                <li>Performed data analysis on large datasets.</li>
+                <li>Created dashboards using Tableau.</li>
+                <li>Worked on real-world analytics use cases.</li>
+            </ul>
+        </div>
 
-    <div class="card">
-        <h3>Smart Online Board</h3>
-        <ul>
-            <li>AI-based educational board for solving academic problems.</li>
-            <li>Supports diagrams and high-level problem analysis.</li>
-            <li>Integrated authentication and intelligent assistance.</li>
-        </ul>
-    </div>
-</section>
+        <div class="card card-3d">
+            <h3>VIOs – Power BI for Data Analysis (2023)</h3>
+            <ul>
+                <li>Explored large datasets using Power BI.</li>
+                <li>Designed interactive reports and visualizations.</li>
+            </ul>
+        </div>
 
-<!-- ================= EXPERIENCE ================= -->
-<section id="experience">
-    <h2>Experience & Training</h2>
+        <div class="card card-3d">
+            <h3>Applied Artificial Intelligence – Practical Implementations</h3>
+            <ul>
+                <li>Hands-on learning from Python basics to advanced.</li>
+                <li>Worked on data visualization and machine learning concepts.</li>
+            </ul>
+        </div>
+    </section>
 
-    <div class="card">
-        <h3>Deloitte – Data Analytics Job Simulation (2025)</h3>
-        <ul>
-            <li>Performed data analysis on large datasets.</li>
-            <li>Created dashboards using Tableau.</li>
-            <li>Worked on real-world analytics use cases.</li>
-        </ul>
-    </div>
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="card card-3d">
+            <p>Feel free to reach out to me for any opportunities or collaborations!</p>
+            <div class="contact-links">
+                <a href="mailto:sharanukabane01@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/sharanu-kabane-95198029b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/srkabane" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
 
-    <div class="card">
-        <h3>VIOs – Power BI for Data Analysis (2023)</h3>
-        <ul>
-            <li>Explored large datasets using Power BI.</li>
-            <li>Designed interactive reports and visualizations.</li>
-        </ul>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Sharanu R Kabane • Built with HTML, CSS & JavaScript</p>
+        <p>Designed with ❤️ for the web</p>
+    </footer>
 
-    <div class="card">
-        <h3>Applied Artificial Intelligence – Practical Implementations</h3>
-        <ul>
-            <li>Hands-on learning from Python basics to advanced.</li>
-            <li>Worked on data visualization and machine learning concepts.</li>
-        </ul>
-    </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-        <p>Email: <a href="mailto:sharanukabane01@gmail.com">sharanukabane01@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/sharanu-kabane-95198029b/" target="_blank">linkedin.com/in/sharanu-kabane</a></p>
-        <p>GitHub: <a href="https://github.com/srkabane" target="_blank">github.com/srkabane</a></p>
-    </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer>
-    © 2025 Sharanu R Kabane • Built with HTML, CSS & JavaScript
-</footer>
-
-<!-- ================= JS ================= -->
-<script>
-    // Smooth scroll for navigation
-    document.querySelectorAll("nav a").forEach(link => {
-        link.addEventListener("click", e => {
-            e.preventDefault();
-            document.querySelector(link.getAttribute("href"))
-                .scrollIntoView({ behavior: "smooth" });
+    <!-- JavaScript -->
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
-    });
-</script>
 
+        // Particle background
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles-js');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * -20;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+
+            // Add scroll reveal animation
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(section);
+            });
+        });
+
+        // Add 3D tilt effect to cards
+        document.querySelectorAll('.card-3d').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+    </script>
 </body>
 </html>
